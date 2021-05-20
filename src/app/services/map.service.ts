@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { FeatureCollection } from '../map';
+// import { FeatureCollection } from '../map';
 
 @Injectable({
   providedIn: 'root',
