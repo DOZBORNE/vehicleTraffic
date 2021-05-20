@@ -1,0 +1,30 @@
+<div id="console">
+  <h1>Vehicle Ad Traffic</h1>
+  <p>
+    This map explores a plethora of vehicle data by time and location.
+    <span class="bold"> Larger radius circles </span> exhibit higher traffic
+    driven for that vehicle.
+  </p>
+
+  <div class="session">
+    <h2>Impressions <span class="num">(in thousands)</span></h2>
+    <div class="row colors"></div>
+    <div class="row labels">
+      <div class="label">> 20</div>
+      <div class="label">20</div>
+      <div class="label">40</div>
+      <div class="label">60</div>
+      <div class="label">80</div>
+      <div class="label">100+</div>
+    </div>
+  </div>
+  <input
+    type="text"
+    placeholder="Search by cab ID (e.g. 1N33)"
+    name="cabID"
+    (keyup)="getValue()"
+    [(ngModel)]="cabID"
+    class="input"
+    maxlength="4"
+  />
+</div>
