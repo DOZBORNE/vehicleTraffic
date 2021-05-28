@@ -10,12 +10,12 @@
     <h2>Impressions <span class="num">(in thousands)</span></h2>
     <div class="row colors"></div>
     <div class="row labels">
-      <div class="label">> 20</div>
-      <div class="label">20</div>
-      <div class="label">40</div>
-      <div class="label">60</div>
-      <div class="label">80</div>
-      <div class="label">100+</div>
+      <div class="label">&lt; 25</div>
+      <div class="label">25</div>
+      <div class="label">50</div>
+      <div class="label">75</div>
+      <div class="label">95</div>
+      <div class="label">95 +</div>
     </div>
   </div>
   <input
@@ -27,4 +27,34 @@
     class="input"
     maxlength="4"
   />
+  <div class="session">
+    <h2>
+      Day: <label id="active-hour"> {{ dayInput }}</label>
+    </h2>
+    <input
+      id="slider"
+      class="row"
+      type="range"
+      min="0"
+      max="31"
+      step="1"
+      (click)="date()"
+      [(ngModel)]="dayInput"
+    />
+  </div>
+  <div class="session">
+    <h2>
+      Hour: <label id="active-hour"> {{ hourInput }}</label>
+    </h2>
+    <input
+      id="slider"
+      class="row"
+      type="range"
+      min="0"
+      max="23"
+      step="1"
+      (click)="date()"
+      [(ngModel)]="hourInput"
+    />
+  </div>
 </div>

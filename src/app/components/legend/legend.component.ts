@@ -8,13 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LegendComponent implements OnInit {
   cabID: string;
+  dayInput: string = '12';
+  hourInput: string = '0';
 
   constructor(private mapService: MapService) {}
 
   getValue() {
-    // const value = this.cabID.toUpperCase();
-    // console.log(value);
-    this.mapService.filterFeatures(this.cabID.toUpperCase());
+    this.mapService.filterFeatures(this.dayInput, this.hourInput, this.cabID);
   }
+
+  date() {
+    this.mapService.filterTime(this.dayInput, this.hourInput, this.cabID);
+  }
+
   ngOnInit(): void {}
 }
