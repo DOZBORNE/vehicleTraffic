@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 // import * as mapboxgl from 'mapbox-gl';
 import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -47,47 +47,6 @@ export class MapService {
     });
 
     this.map.addControl(new mapboxgl.NavigationControl());
-  }
-
-  // TRIGGERED BY TOGGLE INPUT SEARCH FIELDS
-  filterTime(day: string, hour: string, cabID: string) {
-    let cabFilter: [
-      a: string,
-      x: [b: string, y: [c: string, d: string]],
-      e: string
-    ];
-
-    if (!cabID || cabID.length !== 4) {
-      // console.log('cab ID 0');
-      cabFilter = ['!=', ['string', ['get', 'CabID']], 'placeholder'];
-    } else {
-      // console.log(cabID);
-      // console.log('cab ID valid');
-      const newCabID = cabID.toUpperCase();
-      cabFilter = ['==', ['string', ['get', 'CabID']], newCabID];
-    }
-
-    const hourPlusOne = (+hour + 1).toString();
-
-    let hourStart = new Date(`2019-8-${day} ${hour}:00:00`)
-      .toISOString()
-      .replace('T', ' ')
-      .replace('Z', '');
-    let hourFinish = new Date(`2019-8-${day} ${hourPlusOne}:00:00`)
-      .toISOString()
-      .replace('T', ' ')
-      .replace('Z', '');
-
-    // console.log(hourStart);
-    // console.log(hourFinish);
-
-    const dateFilter = [
-      'all',
-      ['>=', ['get', 'Timestamp'], hourStart],
-      ['<', ['get', 'Timestamp'], hourFinish],
-    ];
-
-    this.map.setFilter('locations', ['all', dateFilter, cabFilter]);
   }
 
   // LOADS LAYER AND PROVIDES DEFAULT STYLING FOR POINTS

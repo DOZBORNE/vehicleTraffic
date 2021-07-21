@@ -1,5 +1,5 @@
-import { MapService } from './../../services/map.service';
 import { Component, OnInit } from '@angular/core';
+import { FilterService } from './filter.service';
 
 @Component({
   selector: 'app-legend',
@@ -11,7 +11,7 @@ export class LegendComponent implements OnInit {
   dayInput: string = '12';
   hourInput: string = '0';
 
-  constructor(private mapService: MapService) {}
+  constructor(private filterService: FilterService) {}
 
   // TRIGGERED BY ONKEYUP FROM DATA BINDING IN CABID INPUT BOX
   // TRIGGERED BY ONKEYUP FROM DATA BINDING IN CABID INPUT BOX
@@ -19,16 +19,16 @@ export class LegendComponent implements OnInit {
   // TRIGGERED BY ONKEYUP FROM DATA BINDING IN CABID INPUT BOX
   onFilterCabId() {
     if (this.cabID.length === 4) {
-      this.mapService.filterTime(this.dayInput, this.hourInput, this.cabID);
+      this.filterService.filterTime(this.dayInput, this.hourInput, this.cabID);
     } else if (this.cabID.length < 4) {
       return;
     } else if (this.cabID.length === 0) {
-      this.mapService.filterTime(this.dayInput, this.hourInput, this.cabID);
+      this.filterService.filterTime(this.dayInput, this.hourInput, this.cabID);
     }
   }
 
   filterDate() {
-    this.mapService.filterTime(this.dayInput, this.hourInput, this.cabID);
+    this.filterService.filterTime(this.dayInput, this.hourInput, this.cabID);
   }
 
   ngOnInit(): void {}

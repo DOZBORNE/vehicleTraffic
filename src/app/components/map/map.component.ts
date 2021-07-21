@@ -1,5 +1,4 @@
-// import { environment } from './../../../environments/environment.prod';
-import { MapService } from './../../services/map.service';
+import { MapService } from './map.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
