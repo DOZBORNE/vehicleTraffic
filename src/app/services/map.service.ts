@@ -16,9 +16,6 @@ export class MapService {
   radius = [4, 5, 6, 10, 15];
 
   // USED FOR STYLE FILTERS FOR CIRCLES
-  // USED FOR STYLE FILTERS FOR CIRCLES
-  // USED FOR STYLE FILTERS FOR CIRCLES
-  // USED FOR STYLE FILTERS FOR CIRCLES
   mag1 = ['<', ['get', 'Impressions'], 250];
   mag2 = [
     'all',
@@ -52,9 +49,6 @@ export class MapService {
     this.map.addControl(new mapboxgl.NavigationControl());
   }
 
-  // TRIGGERED BY TOGGLE INPUT SEARCH FIELDS
-  // TRIGGERED BY TOGGLE INPUT SEARCH FIELDS
-  // TRIGGERED BY TOGGLE INPUT SEARCH FIELDS
   // TRIGGERED BY TOGGLE INPUT SEARCH FIELDS
   filterTime(day: string, hour: string, cabID: string) {
     let cabFilter: [
@@ -96,9 +90,6 @@ export class MapService {
     this.map.setFilter('locations', ['all', dateFilter, cabFilter]);
   }
 
-  // LOADS LAYER AND PROVIDES DEFAULT STYLING FOR POINTS
-  // LOADS LAYER AND PROVIDES DEFAULT STYLING FOR POINTS
-  // LOADS LAYER AND PROVIDES DEFAULT STYLING FOR POINTS
   // LOADS LAYER AND PROVIDES DEFAULT STYLING FOR POINTS
   loadMap() {
     this.map.on('load', () => {
