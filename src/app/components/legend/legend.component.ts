@@ -13,10 +13,6 @@ export class LegendComponent implements OnInit {
 
   constructor(private mapService: MapService) {}
 
-  // getValue() {
-  //   this.mapService.filterFeatures(this.dayInput, this.hourInput, this.cabID);
-  // }
-
   // TRIGGERED BY ONKEYUP FROM DATA BINDING IN CABID INPUT BOX
   // TRIGGERED BY ONKEYUP FROM DATA BINDING IN CABID INPUT BOX
   // TRIGGERED BY ONKEYUP FROM DATA BINDING IN CABID INPUT BOX
