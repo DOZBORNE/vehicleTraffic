@@ -13,11 +13,25 @@ export class LegendComponent implements OnInit {
 
   constructor(private mapService: MapService) {}
 
-  getValue() {
-    this.mapService.filterFeatures(this.dayInput, this.hourInput, this.cabID);
+  // getValue() {
+  //   this.mapService.filterFeatures(this.dayInput, this.hourInput, this.cabID);
+  // }
+
+  // TRIGGERED BY ONKEYUP FROM DATA BINDING IN CABID INPUT BOX
+  // TRIGGERED BY ONKEYUP FROM DATA BINDING IN CABID INPUT BOX
+  // TRIGGERED BY ONKEYUP FROM DATA BINDING IN CABID INPUT BOX
+  // TRIGGERED BY ONKEYUP FROM DATA BINDING IN CABID INPUT BOX
+  onFilterCabId() {
+    if (this.cabID.length === 4) {
+      this.mapService.filterTime(this.dayInput, this.hourInput, this.cabID);
+    } else if (this.cabID.length < 4) {
+      return;
+    } else if (this.cabID.length === 0) {
+      this.mapService.filterTime(this.dayInput, this.hourInput, this.cabID);
+    }
   }
 
-  date() {
+  filterDate() {
     this.mapService.filterTime(this.dayInput, this.hourInput, this.cabID);
   }
 

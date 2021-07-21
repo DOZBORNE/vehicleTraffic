@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 // import * as mapboxgl from 'mapbox-gl';
 import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -10,12 +9,10 @@ import { HttpClient } from '@angular/common/http';
 export class MapService {
   map: mapboxgl.Map;
   style = 'mapbox://styles/mapbox/light-v10';
-  // style = 'mapbox://styles/dozborne/ckevp5arf28wy19l9awnjzrg2';
   lat = 43;
   lng = -75;
   zoom = 6;
   colors = ['#3BB3C3', '#669EC4', '#8B88B6', '#A2719B', '#AA5E79'];
-  // radius = [3, 4, 5, 8, 10];
   radius = [4, 5, 6, 10, 15];
 
   // USED FOR STYLE FILTERS FOR CIRCLES
@@ -40,7 +37,7 @@ export class MapService {
   ];
   mag5 = ['>=', ['get', 'Impressions'], 1000];
 
-  constructor(private http: HttpClient) {
+  constructor() {
     mapboxgl.accessToken = environment.mapbox.accessToken;
   }
 
@@ -55,56 +52,45 @@ export class MapService {
     this.map.addControl(new mapboxgl.NavigationControl());
   }
 
-  // TRIGGERED BY ONKEYUP FROM DATA BINDING IN CABID INPUT BOX
-  // TRIGGERED BY ONKEYUP FROM DATA BINDING IN CABID INPUT BOX
-  // TRIGGERED BY ONKEYUP FROM DATA BINDING IN CABID INPUT BOX
-  // TRIGGERED BY ONKEYUP FROM DATA BINDING IN CABID INPUT BOX
-  filterFeatures(day: string, hour: string, cabID: string) {
-    if (cabID.length === 4) {
-      console.log('PRITNED');
-      this.filterTime(day, hour, cabID);
-    } else if (cabID.length == 0) {
-      console.log('HEYT');
-
-      this.filterTime(day, hour, cabID);
-    }
-  }
-
   // TRIGGERED BY TOGGLE INPUT SEARCH FIELDS
   // TRIGGERED BY TOGGLE INPUT SEARCH FIELDS
   // TRIGGERED BY TOGGLE INPUT SEARCH FIELDS
   // TRIGGERED BY TOGGLE INPUT SEARCH FIELDS
   filterTime(day: string, hour: string, cabID: string) {
-    console.log(cabID);
-
-    let cabFilter;
+    let cabFilter: [
+      a: string,
+      x: [b: string, y: [c: string, d: string]],
+      e: string
+    ];
 
     if (!cabID || cabID.length !== 4) {
-      console.log('cab ID 0');
+      // console.log('cab ID 0');
       cabFilter = ['!=', ['string', ['get', 'CabID']], 'placeholder'];
     } else {
-      console.log('cab ID valid');
+      // console.log(cabID);
+      // console.log('cab ID valid');
       const newCabID = cabID.toUpperCase();
       cabFilter = ['==', ['string', ['get', 'CabID']], newCabID];
     }
 
-    const p = parseInt(hour);
-    const addHour = p + 1;
-    const newHour = addHour.toString();
+    const hourPlusOne = (+hour + 1).toString();
 
-    let newTime = new Date(`2019-8-${day} ${hour}:00:00`);
-    let time2 = new Date(`2019-8-${day} ${newHour}:00:00`);
-    // let time2 = new Date(2019, 7, parseInt(time) + 1);
-    let iso = newTime.toISOString().replace('T', ' ').replace('Z', '');
-    let iso2 = time2.toISOString().replace('T', ' ').replace('Z', '');
+    let hourStart = new Date(`2019-8-${day} ${hour}:00:00`)
+      .toISOString()
+      .replace('T', ' ')
+      .replace('Z', '');
+    let hourFinish = new Date(`2019-8-${day} ${hourPlusOne}:00:00`)
+      .toISOString()
+      .replace('T', ' ')
+      .replace('Z', '');
 
-    console.log(iso);
-    console.log(iso2);
+    // console.log(hourStart);
+    // console.log(hourFinish);
 
     const dateFilter = [
       'all',
-      ['>=', ['get', 'Timestamp'], iso],
-      ['<', ['get', 'Timestamp'], iso2],
+      ['>=', ['get', 'Timestamp'], hourStart],
+      ['<', ['get', 'Timestamp'], hourFinish],
     ];
 
     this.map.setFilter('locations', ['all', dateFilter, cabFilter]);

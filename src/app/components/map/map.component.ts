@@ -8,11 +8,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./map.component.css'],
 })
 export class MapComponent implements OnInit {
-  public mapData = {};
-
-  colors = ['#3BB3C3', '#669EC4', '#8B88B6', '#A2719B', '#AA5E79'];
-  radius = [3, 4, 5, 8, 10];
-
   constructor(private mapService: MapService) {}
 
   ngOnInit(): void {

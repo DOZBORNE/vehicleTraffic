@@ -5,7 +5,6 @@
     <span class="bold"> Larger radius circles </span> exhibit higher traffic
     driven for that vehicle.
   </p>
-
   <div class="session">
     <h2>Impressions <span class="num">(in thousands)</span></h2>
     <div class="row colors"></div>
@@ -18,43 +17,47 @@
       <div class="label">95 +</div>
     </div>
   </div>
-  <input
-    type="text"
-    placeholder="Search by cab ID (e.g. 1N33)"
-    name="cabID"
-    (keyup)="getValue()"
-    [(ngModel)]="cabID"
-    class="input"
-    maxlength="4"
-  />
-  <div class="session">
-    <h2>
-      Day: <label id="active-hour"> {{ dayInput }}</label>
-    </h2>
+  <form #f="ngForm">
     <input
-      id="slider"
-      class="row"
-      type="range"
-      min="0"
-      max="31"
-      step="1"
-      (click)="date()"
-      [(ngModel)]="dayInput"
+      type="text"
+      placeholder="Search by cab ID (e.g. 1N33)"
+      name="cabID"
+      (keyup)="onFilterCabId()"
+      [(ngModel)]="cabID"
+      class="input"
+      maxlength="4"
     />
-  </div>
-  <div class="session">
-    <h2>
-      Hour: <label id="active-hour"> {{ hourInput }}</label>
-    </h2>
-    <input
-      id="slider"
-      class="row"
-      type="range"
-      min="0"
-      max="23"
-      step="1"
-      (click)="date()"
-      [(ngModel)]="hourInput"
-    />
-  </div>
+    <div class="session">
+      <h2>
+        Day: <label id="active-hour"> {{ dayInput }}</label>
+      </h2>
+      <input
+        name="day"
+        id="slider"
+        class="row"
+        type="range"
+        min="0"
+        max="31"
+        step="1"
+        (mouseup)="filterDate()"
+        [(ngModel)]="dayInput"
+      />
+    </div>
+    <div class="session">
+      <h2>
+        Hour: <label id="active-hour"> {{ hourInput }}</label>
+      </h2>
+      <input
+        name="hour"
+        id="slider"
+        class="row"
+        type="range"
+        min="0"
+        max="23"
+        step="1"
+        (mouseup)="filterDate()"
+        [(ngModel)]="hourInput"
+      />
+    </div>
+  </form>
 </div>
